@@ -9,10 +9,10 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const baseUrl = process.env.BASE_URL || 'https://memorify-9iah.onrender.com';
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000/api/ping';
 
 // Middleware
-app.use(cors());
+app.use(cors({origin:'http://localhost:5173'})); // Adjust the origin as needed
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -66,7 +66,7 @@ app.get('/api/internal-call', async (_req, res) => {
 });
 
 // Fallback route for client-side routing
-app.get('*', (_req, res) => {
+app.get('/*splat', (_req, res) => {
   try {
     res.sendFile(path.join(__dirname, '../../frontend/dist', 'index.html'));
   } catch (error) {

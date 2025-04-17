@@ -18,6 +18,8 @@ function App() {
 
   const [backendData, setBackendData] = useState<BackendData | null>(null);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
     setIsModalOpen(true);
@@ -27,15 +29,16 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://memorify-9iah.onrender.com/api/data'); // Use Render URL
+        const response = await axios.get(`${backendUrl}/api/ping`);
+        console.log(response.data); // Should log "pong"
         setBackendData(response.data);
       } catch (error) {
-        console.error('Error fetching data from backend:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [backendUrl]); // Include backendUrl in the dependency array
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50">

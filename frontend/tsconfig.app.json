@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "frontend/src/App.tsx", "frontend/src/components", "frontend/src/vite-env.d.ts"]
+  "include": ["src", "frontend/src/App.tsx", "frontend/src/components", "frontend/src/vite-env.d.ts", "frontend/src/Pages"]
 }
